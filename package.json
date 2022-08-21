@@ -1,0 +1,39 @@
+{
+  "name": "practica-chat",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node ./server.js --http",
+    "dev": "parcel src/static/index.html --open --no-cache",
+    "build": "parcel build src/static/index.html --no-source-maps --no-cache"
+  },
+  "parcelCleanPaths": [
+    "dist",
+    ".parcel-cache"
+  ],
+  "engines": {
+    "npm": "8.11.0",
+    "node": "16.15.1"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RusJafar/practica-chat.git"
+  },
+  "author": "Ruslan Z",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RusJafar/practica-chat/issues"
+  },
+  "homepage": "https://github.com/RusJafar/practica-chat#readme",
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "parcel": "2.7.0",
+    "parcel-bundler": "^1.12.5"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.7.0",
+    "express": "^4.18.1",
+    "parcel-plugin-clean-easy": "^1.0.2"
+  }
+}

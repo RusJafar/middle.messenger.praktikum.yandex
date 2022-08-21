@@ -1,0 +1,42 @@
+#chatHeader {
+  position: fixed;
+  width: 100%;
+  background: white;
+  z-index: 100;
+}
+
+.single-chat-header {
+  width: 100%;
+  height: fit-content;
+}
+
+.single-chat-header__avatar-con {
+  width: 5%;
+}
+
+.single-chat-header__info-con {
+  width: 75%;
+}
+
+.single-chat-header__name {
+  color: #3a3a3a;
+  font-weight: 800;
+  line-height: 3em;
+}
+
+.single-chat-header__menu-con {
+  margin: 5px;
+}
+
+.single-chat-header__menu {
+  font-size: 33px;
+  font-weight: bold;
+  color: #355843;
+  margin-right: 1em;
+  cursor: pointer;
+}
+
+.single-chat-header_hr {
+  width: 98%;
+  margin-bottom: 0px;
+}

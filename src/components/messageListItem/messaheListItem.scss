@@ -1,0 +1,45 @@
+//Chat feed
+.chat-item {
+  width: 100%;
+  background: #fff;
+}
+
+.chat-item__avatar-con {
+  width: 20%;
+}
+
+.chat-item__user_initials {
+  background: #bbcfc3;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  color: #3a3a3a;
+}
+
+.chat-item__info-con {
+  width: 80%;
+  margin: 10px;
+}
+
+.chat-item__name {
+  font-weight: 800;
+  color: #3a3a3a;
+}
+
+.chat-item__last-action {
+  margin-top: 2px;
+}
+
+.chat-item__action-time {
+  font-size: 14px;
+}
+
+.chat-item__new-action-count {
+  background: #355843;
+  color: #fff;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+}
