@@ -1,7 +1,6 @@
-//Chat feed
 .chat-item {
   width: 100%;
-  background: #fff;
+  background: $white;
 }
 
 .chat-item__avatar-con {
@@ -9,12 +8,12 @@
 }
 
 .chat-item__user_initials {
-  background: #bbcfc3;
+  background: $soft-green;
   border-radius: 100%;
   width: 50px;
   height: 50px;
   margin: 10px;
-  color: #3a3a3a;
+  color: $express-font-color;
 }
 
 .chat-item__info-con {
@@ -24,7 +23,7 @@
 
 .chat-item__name {
   font-weight: 800;
-  color: #3a3a3a;
+  color: $express-font-color;
 }
 
 .chat-item__last-action {
@@ -36,8 +35,8 @@
 }
 
 .chat-item__new-action-count {
-  background: #355843;
-  color: #fff;
+  background: $main-color;
+  color: $white;
   border-radius: 100%;
   width: 20px;
   height: 20px;

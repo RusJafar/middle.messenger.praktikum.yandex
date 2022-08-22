@@ -1,13 +1,17 @@
-@import 'button/button.scss';
-@import 'messageListItem/messaheListItem.scss';
-@import 'singleChatMessageItem/singleChatMessageItem.scss';
-@import 'singleChatHeader/singleChatHeader.scss';
-@import 'singleChatMessageInput/singleChatMessageInput.scss';
+
 
 $main-color: #355843;
 $soft-green: #bbcfc3;
 $main-font-color: #7e7e7e;
 $express-font-color: #3a3a3a;
+$white: #fff;
+$soft-grey: #efefef;
+
+@import 'button/button.scss';
+@import 'src/components/messageListItem/messageListItem';
+@import 'singleChatMessageItem/singleChatMessageItem.scss';
+@import 'singleChatHeader/singleChatHeader.scss';
+@import 'singleChatMessageInput/singleChatMessageInput.scss';
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -119,7 +123,7 @@ p, a {
   width: 476px;
   height: auto;
   margin: auto;
-  background: #FFFFFF;
+  background: $white;
   border-radius: 5px;
 }
 
@@ -135,7 +139,7 @@ p, a {
     width: 80%;
     height: 45px;
     margin: 8px;
-    background: #EFEFEF;
+    background: $soft-grey;
     border: none;
     border-radius: 5px;
   }
@@ -144,7 +148,7 @@ p, a {
 .modal__title {
   font-weight: 500;
   font-size: 32px;
-  color: #2B2929;
+  color: $main-color;
 }
 
 .login-form__buttons {
@@ -155,7 +159,7 @@ p, a {
     width: 380px;
     height: 65px;
     margin: 16px;
-    background: #467E5C;
+    background: $main-color;
     border-radius: 5px;
     font-weight: 500;
     font-size: 24px;
@@ -169,7 +173,7 @@ p, a {
 }
 
 .chats-feed {
-  background: #fff;
+  background: $white;
   width: 25%;
   margin-top: 10px;
   border-right: 1px solid;
@@ -195,7 +199,7 @@ p, a {
   width: 90%;
   height: 45px;
   margin: auto;
-  background: #EFEFEF;
+  background: $soft-grey;
   border: none;
   border-radius: 5px;
 }

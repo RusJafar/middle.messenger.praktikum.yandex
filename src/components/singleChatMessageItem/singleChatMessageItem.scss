@@ -1,8 +1,7 @@
 .single-chat {
   width: 100%;
-  background: #fff;
+  background: $white;
   height: 85%;
-  //margin: auto;
 }
 
 .single-chat__message-list {
@@ -11,15 +10,11 @@
 }
 
 .single-chat__message-content {
-  background: #bbcfc3;
+  background: $soft-green;
   border-radius: 5px;
   padding: 10px;
   width: 50%;
   margin: 5px;
-}
-
-.single-chat__message-text {
-
 }
 
 .single-chat__meta {

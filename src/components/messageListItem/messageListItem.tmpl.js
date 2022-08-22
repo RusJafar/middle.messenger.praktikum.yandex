@@ -8,7 +8,7 @@ export default `
         <div class="w_100 h_100">
         {{#if this.avatar}}
         <span class="chat-item__user_initials flex justify_space_around align_items_center">
-            <img src="{{this.avatar}}" alt="" />
+            <img src="{{this.avatar}}" alt="Автар" />
         </span>
         {{else}}
             <span class="chat-item__user_initials flex justify_space_around align_items_center">

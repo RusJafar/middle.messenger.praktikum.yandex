@@ -19,7 +19,7 @@
 }
 
 .single-chat-header__name {
-  color: #3a3a3a;
+  color: $express-font-color;
   font-weight: 800;
   line-height: 3em;
 }
@@ -31,7 +31,7 @@
 .single-chat-header__menu {
   font-size: 33px;
   font-weight: bold;
-  color: #355843;
+  color: $main-color;
   margin-right: 1em;
   cursor: pointer;
 }

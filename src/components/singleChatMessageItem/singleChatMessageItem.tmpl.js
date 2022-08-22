@@ -8,7 +8,7 @@ export default `
                     {{this.last_message.content}}
                     </span>
                     <div class="single-chat__meta flex justify_content_end">
-                        <span>22:00</span>
+                        <time>22:00</time>
                     </div>
                </div>
             </div>
