@@ -20,7 +20,10 @@ https://www.figma.com/file/g01h4wah9RXNOx2JJa7AK5/Untitled?node-id=0%3A1
 https://github.com/RusJafar/practica-chat.git
 
 ## Ссылка на домен в NetLify
-https://willowy-khapse-0519d6.netlify.app/
+* Деплой ветки `main` 
+  https://willowy-khapse-0519d6.netlify.app/
+* Деполой ветки `sprint_1`
+  https://glittery-faloodeh-d4f42c.netlify.app/
 
 __Запуск__
 - Утановка `npm i`

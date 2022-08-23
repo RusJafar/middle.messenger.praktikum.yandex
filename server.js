@@ -34,7 +34,7 @@ app.route('/404').get((req, res) => {
 });
 
 app.route('/500').get((req, res) => {
-    if(res.status === 404) {}
+    res.sendFile(`${__dirname}/dist/500.html`);
 });
 
 
