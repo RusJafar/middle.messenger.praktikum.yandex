@@ -7,7 +7,6 @@ $express-font-color: #3a3a3a;
 $white: #fff;
 $soft-grey: #efefef;
 
-@import 'button/button.scss';
 @import 'src/components/messageListItem/messageListItem';
 @import 'singleChatMessageItem/singleChatMessageItem.scss';
 @import 'singleChatHeader/singleChatHeader.scss';

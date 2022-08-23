@@ -2,9 +2,11 @@ import Handlebars from 'handlebars';
 import "../components";
 import '../helpers';
 import {chats} from '../mockData/chatsList';
+import loginFormTmpl from '../components/loginForm/loginForm.tmpl'
 
 if (window.location.href.includes('login')) {
-    console.log('Login')
+    const compileChatList = Handlebars.compile(loginFormTmpl);
+    document.getElementById('loginForm').innerHTML = compileChatList({chats});
 }
 
 if (window.location.href.includes('registration')) {
