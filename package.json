@@ -12,7 +12,6 @@
     "dist",
     ".parcel-cache"
   ],
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RusJafar/practica-chat.git"

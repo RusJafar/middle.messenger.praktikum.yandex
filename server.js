@@ -1,9 +1,9 @@
-import express from "express";
-import {config} from "dotenv";
-import * as http from "http";
+const express = require('express') ;
+const dotenv = require('dotenv')
+const http = require('http');
 
 
-config();
+dotenv.config();
 const app = express();
 const PORT = 3000;
 
@@ -12,4 +12,4 @@ app.use(express.static(`./dist`));
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Express app listening on port ${PORT}`);
-})
+});
