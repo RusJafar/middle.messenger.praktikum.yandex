@@ -10,6 +10,7 @@ import singleChat from "../components/singleChat/singleChat";
 import chatHeader from "../components/chatHeader/chatHeader";
 import sendMessagePanel from "../components/sendMessagePanel/sendMessagePanel";
 import chatListLeftBar from "../components/chatListLeftBar/chatListLeftBar";
+import profile from "../components/profile/profile";
 
 if (window.location.href.includes('login')) {
     const compile = Handlebars.compile(loginFormTmpl);
@@ -32,6 +33,12 @@ if (window.location.href.includes('404')) {
     console.log('404')
     const compile = Handlebars.compile(error404);
     document.getElementById('error404').innerHTML = compile({});
+}
+
+if (window.location.href.includes('profile')) {
+    console.log('profile')
+    const compile = Handlebars.compile(profile);
+    document.getElementById('profile').innerHTML = compile({});
 }
 
 const pageHref = window.location.href;
