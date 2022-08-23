@@ -4,14 +4,10 @@
   "description": "",
   "homepage": "./",
   "scripts": {
-    "start": "node ./server.js",
+    "start": "parcel build src/static/index.html && node ./server.js",
     "dev": "parcel src/static/index.html --no-cache",
     "build": "parcel build src/static/index.html --no-source-maps --no-cache"
   },
-  "parcelCleanPaths": [
-    "dist",
-    ".parcel-cache"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RusJafar/practica-chat.git"
