@@ -1,8 +1,7 @@
-import * as Handlebars from "handlebars";
+import * as Handlebars from 'handlebars';
 
+Handlebars.registerHelper('dateHelper', (UTSTime) => {
+  const time = new Date(UTSTime);
 
-Handlebars.registerHelper("dateHelper", (UTSTime) => {
-    const time = new Date(UTSTime);
-
-    return new Handlebars.SafeString(`${time.getHours()}:${time.getMinutes()}`);
+  return new Handlebars.SafeString(`${time.getHours()}:${time.getMinutes()}`);
 });

@@ -7,6 +7,6 @@ const singleChat = `
       {{#each chats}}
         {{> singleChatMessageItem }}
       {{/each}}
-`
+`;
 
-export default  singleChat;
+export default singleChat;

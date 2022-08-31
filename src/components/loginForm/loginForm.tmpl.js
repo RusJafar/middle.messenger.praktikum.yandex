@@ -13,5 +13,5 @@ const loginFormTmpl = `
             </div>
         </form>
     </div>
-`
+`;
 export default loginFormTmpl;

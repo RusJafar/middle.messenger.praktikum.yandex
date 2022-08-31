@@ -40,4 +40,4 @@ export default `
 </div>
 </a>
 <hr class="chats-feed_hr"/>
-`
+`;
