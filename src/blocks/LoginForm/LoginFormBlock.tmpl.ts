@@ -5,14 +5,11 @@ export default `
         </div>
         <form class="login-form  flex align_items_center direction_column">
             <div class="login-form__inputs flex align_items_center direction_column">
-            {{{loginInput}}}
-            {{{loginPassword}}}
-<!--                <input class="login-form__input" type="text" name="login" placeholder="Логин"/>-->
-<!--                <input class="login-form__input" type="text" pasword="password" placeholder="Пароль"/>-->
+                {{{loginInput}}}
+                {{{loginPassword}}}
             </div>
             <div class="login-form__buttons flex align_items_center direction_column mt-2">
-            {{{button}}}
-<!--                <button type="submit" class="login-form__button">Авторизоаться</button>-->
+                {{{button}}}
             </div>
         </form>
     </div>

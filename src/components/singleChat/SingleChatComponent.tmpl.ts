@@ -1,4 +1,5 @@
-const singleChat = `
+export default `
+<div>
       {{#unless chats}}
         <div class="splash-screen w_100">
             Выберите чат чтобы отправить сообщение
@@ -7,6 +8,5 @@ const singleChat = `
       {{#each chats}}
         {{> singleChatMessageItem }}
       {{/each}}
+</div>
 `;
-
-export default singleChat;

@@ -2,28 +2,24 @@ import Handlebars from 'handlebars';
 import '../components';
 import '../helpers';
 import {chats} from '../mockData/chatsList';
-import loginFormTmpl from '../components/loginForm/loginForm.tmpl';
-import registrationForm from '../components/registrationForm/registrationForm.tmpl';
 import error500 from '../components/error500/error500';
 import error404 from '../components/error404/error404';
-import singleChat from '../components/singleChat/singleChat';
-import chatHeader from '../components/chatHeader/chatHeader';
-import sendMessagePanel from '../components/sendMessagePanel/sendMessagePanel';
-import chatListLeftBar from '../components/chatListLeftBar/chatListLeftBar';
 import profile from '../components/profile/profile';
-import Button from '../components/Button/Button'
 import render from '../utils/renderDOM';
-import LoginForm from "../blocks/LoginForm/LoginForm";
+import LoginFormBlock from "../blocks/LoginForm/LoginFormBlock";
+import RegistrationFormBlock from "../blocks/RegistrationFormBlock/RegistrationFormBlock";
+import Chats from "../pages/Chat/Chat";
+
 
 if (window.location.href.includes('login')) {
-    const loginForm = new LoginForm({})
+    const loginForm = new LoginFormBlock()
     render('#loginForm', loginForm)
 }
 
 if (window.location.href.includes('registration')) {
-    console.log('registration');
-    const compile = Handlebars.compile(registrationForm);
-    document.getElementById('registrationForm').innerHTML = compile({});
+    const registrationFormBlock = new RegistrationFormBlock();
+    render('#registrationForm', registrationFormBlock);
+
 }
 
 if (window.location.href.includes('500')) {
@@ -46,19 +42,19 @@ if (window.location.href.includes('profile')) {
 
 const pageHref = window.location.href;
 if (pageHref.includes('chats') || pageHref.includes('single-chat')) {
-    console.log('cats');
+    const singleChatData = chats[0];
+    const chatListBlock = new Chats({chats, singleChatData});
     window.addEventListener('DOMContentLoaded', () => {
-        const compileChatList = Handlebars.compile(chatListLeftBar);
-        document.getElementById('chatList').innerHTML = compileChatList({chats});
+        render('#chatList', chatListBlock)
 
-        const singleChatData = chats[0];
-        const compileSingleChat = Handlebars.compile(singleChat);
-        document.getElementById('singleChat').innerHTML = compileSingleChat({chats});
+        // const singleChatData = chats[0];
+        // const compileSingleChat = Handlebars.compile(singleChatComponentTmpl);
+        // document.getElementById('singleChatComponentTmpl').innerHTML = compileSingleChat({chats});
 
-        const compileChatHeader = Handlebars.compile(chatHeader);
-        document.getElementById('chatHeader').innerHTML = compileChatHeader({singleChatData});
-
-        const compileMessageInput = Handlebars.compile(sendMessagePanel);
-        document.getElementById('messageInput').innerHTML = compileMessageInput({singleChatData});
+        // const compileChatHeader = Handlebars.compile(chatHeader);
+        // document.getElementById('chatHeader').innerHTML = compileChatHeader({singleChatData});
+        //
+        // const compileMessageInput = Handlebars.compile(sendMessagePanel);
+        // document.getElementById('messageInput').innerHTML = compileMessageInput({singleChatData});
     });
 }

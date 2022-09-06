@@ -1,13 +1,14 @@
-const METHODS = {
-    GET: 'GET',
-    POST: 'POST',
-    PUT: 'PUT',
-    DELETE: 'DELETE',
-    PATCH: 'PATCH'
+enum METHODS  {
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    DELETE = 'DELETE',
+    PATCH = 'PATCH'
 };
 
+
+
 function queryStringify(data) {
-    let path = '?';
     let params = [];
 
     Object.entries(data).forEach(([key, value]) => {
@@ -17,36 +18,37 @@ function queryStringify(data) {
     return `?${params.join('&')}`
 }
 
+type Options = {
+    data: any,
+    method: string,
+    headers: string,
+    timeout: number
+}
+
 class HTTPTransport {
-    get = (url, options = {}) => {
-        console.log(options.data)
+    get = (url: string, options: Options) => {
         if(options.data) {
             url += queryStringify(options.data);
         }
 
-        return this.request(url, {...options, method: METHODS.GET}, options.timeout);
+        return this.request(url, {data: options.data, headers: options.headers, method: METHODS.GET, timeout:options.timeout});
     };
 
-    post = (url, options = {}) => {
+    post = (url, options: Options) => {
 
-        return this.request(url, {...options, method: METHODS.POST}, options.timeout);
+        return this.request(url, {data: options.data, headers: options.headers, method: METHODS.GET, timeout: options.timeout});
     };
 
-    put = (url, options = {}) => {
+    put = (url, options: Options) => {
 
-        return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
+        return this.request(url, {data: options.data, headers: options.headers, method: METHODS.GET, timeout:options.timeout});
     };
-    delete = (url, options = {}) => {
+    delete = (url, options:Options) => {
 
-        return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
+        return this.request(url, {data: options.data, headers: options.headers, method: METHODS.GET, timeout:options.timeout});
     };
 
-    // PUT, POST, DELETE
-
-    // options:
-    // headers — obj
-    // data — obj
-    request = (url, options) => {
+    request = (url: string, options: Options) => {
         const {data, method, headers, timeout} = options;
 
         return new Promise((resolve, reject) => {
@@ -59,7 +61,7 @@ class HTTPTransport {
             }
 
             xhr.onerror = reject;
-            xhr.onabord = reject;
+            xhr.onabort = reject;
             xhr.withCredentials = true;
             xhr.ontimeout = reject;
             xhr.timeout = timeout;

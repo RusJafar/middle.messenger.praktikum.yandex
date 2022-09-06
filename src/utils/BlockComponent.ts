@@ -126,15 +126,21 @@ class Block {
 
     private _render() {
         const fragment = this.render();
+        console.log(fragment.children.length)
+        const newElement = fragment.firstElementChild as HTMLElement;
 
-        this._element!.innerHTML = '';
+        console.log("fragment")
+        console.log(fragment)
+        console.log(newElement)
 
-        this._element!.append(fragment);
+        this._element?.replaceWith(newElement);
+
+        this._element = newElement;
 
         this._addEvents();
     }
 
-    protected compile(template: (context: any) => string, context: any) {
+    protected compile(template: string, context: any) {
         const contextAndStubs = { ...context };
 
         Object.entries(this.children).forEach(([name, component]) => {
@@ -143,9 +149,7 @@ class Block {
 
         const compile = Handlebars.compile(template);
         const html = compile(contextAndStubs);
-
         const temp = document.createElement('template');
-
         temp.innerHTML = html;
 
         Object.entries(this.children).forEach(([_, component]) => {

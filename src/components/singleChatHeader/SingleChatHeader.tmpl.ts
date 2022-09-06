@@ -8,7 +8,7 @@ export default `
             </span>
             {{else}}
                 <span class="chat-item__user_initials flex justify_space_around align_items_center">
-                {{getInitialHelper this.last_message.user.first_name this.last_message.user.second_name}}
+                    {{getInitialHelper this.last_message.user.first_name this.last_message.user.second_name}}
                 </span>
             {{/if}}
             </div>

@@ -1,7 +1,12 @@
 import BlockComponent from '../../utils/BlockComponent';
 import ButtonTemplate from './Button.tmpl';
 
-interface ButtonProps { className: string; text: string; events: { click: () => void } }
+interface ButtonProps {
+    className: string;
+    text: string;
+    type: string;
+    events: { click: (e) => void }
+}
 
 
 export default class Button extends BlockComponent {
@@ -11,11 +16,11 @@ export default class Button extends BlockComponent {
 
     render() {
         const {text, className} = this.props;
-        const buttonTemplate: any = ButtonTemplate; //TODO
+        const buttonTemplate: any = ButtonTemplate;
         return this.compile(buttonTemplate, {text, className});
     }
 
     componentDidUpdate(oldProps, newProps) {
-        return oldProps.text !== newProps.text? true: false;
+        return oldProps.text !== newProps.text ? true : false;
     }
 }
