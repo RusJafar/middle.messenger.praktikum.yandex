@@ -7,6 +7,7 @@
   - добавление и удаление пользователей из чата;
   - поиск по всем чатам;
   - отправка сообщений.
+  
 ## Ссылка на макет
 https://www.figma.com/file/g01h4wah9RXNOx2JJa7AK5/Untitled?node-id=0%3A1
 
@@ -15,6 +16,7 @@ https://www.figma.com/file/g01h4wah9RXNOx2JJa7AK5/Untitled?node-id=0%3A1
 - Parcel
 - Scss
 - Express
+- Typescript
 
 ##  Репзиторий  Githab  
 https://github.com/RusJafar/practica-chat.git
