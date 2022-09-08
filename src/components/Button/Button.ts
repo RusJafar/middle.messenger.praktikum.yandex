@@ -1,14 +1,6 @@
 import BlockComponent from '../../utils/BlockComponent';
 import ButtonTemplate from './Button.tmpl';
-
-interface ButtonProps {
-    className: string;
-    text: string;
-    type: string;
-    disabled?: string
-    events: { click: (e) => void }
-}
-
+import ButtonProps from "./ButtonTypes";
 
 export default class Button extends BlockComponent {
     constructor(props: ButtonProps) {
@@ -21,7 +13,7 @@ export default class Button extends BlockComponent {
         return this.compile(buttonTemplate, {text, className, disabled});
     }
 
-    componentDidUpdate(oldProps, newProps) {
-        return JSON.stringify(oldProps)===JSON.stringify(newProps);
+    componentDidUpdate(oldProps: ButtonProps, newProps: ButtonProps) {
+        return JSON.stringify(oldProps) === JSON.stringify(newProps);
     }
 }

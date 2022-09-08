@@ -7,15 +7,15 @@ interface InputProps {
     min: string;
     max: string;
     name: string;
-    pattern: string;
+    pattern: string | null;
     className: string;
     placeholder: string;
     type: string;
     value: string;
     events: {
-        keyup: (e) => void;
-        blur?: (e) => void
-        focus?: (e) => void
+        keyup: (e: Event) => void;
+        blur?: (e: Event) => void
+        focus?: (e: Event) => void
     }
 }
 
@@ -29,7 +29,7 @@ export default class Input extends BlockComponent {
         return this.compile(InputTemplate, {placeholder, className, name, type, max, min, pattern, value});
     }
 
-    componentDidUpdate(oldProps, newProps) {
+    componentDidUpdate(oldProps: InputProps, newProps: InputProps) {
         return JSON.stringify(oldProps) === JSON.stringify(newProps);
     }
 }

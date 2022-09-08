@@ -12,8 +12,8 @@ import {LoginFormBlockStateType} from "./LoginFormTypes";
 
 export default class LoginFormBlock extends BlockComponent {
     state: LoginFormBlockStateType;
-    constructor(props) {
-        super(props);
+    constructor(props: any) {
+        super('div', props);
         this.state = {
             login: '',
             password: '',
@@ -21,7 +21,7 @@ export default class LoginFormBlock extends BlockComponent {
     }
 
     isDataValid = () => {
-        Object.entries(this.state).forEach(item => {
+        Object.entries(this.state).forEach((item: any) => {
             switch (item[0]) {
                 case 'login':
                     if(!validateLogin(item[1])) this.children.loginInput.className = ' required';
@@ -38,8 +38,7 @@ export default class LoginFormBlock extends BlockComponent {
             text: 'Авторизоваться',
             className: 'login-form__button',
             type: 'submit',
-            disabled: null
-            ,
+            disabled: null,
             events: {
                 click: (e) => {
                     e.preventDefault();
@@ -103,9 +102,5 @@ export default class LoginFormBlock extends BlockComponent {
 
     render() {
         return this.compile(loginFormTemplate, {});
-    }
-
-    componentDidUpdate(oldProps, newProps) {
-        return oldProps.text !== newProps.text ? true : false;
     }
 }

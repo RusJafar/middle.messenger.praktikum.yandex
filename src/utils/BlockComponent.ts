@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import * as Handlebars from "handlebars";
 
 
+
 class Block {
     static EVENTS = {
         INIT: "init",
@@ -38,11 +39,11 @@ class Block {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _getChildrenAndProps(childrenAndProps: any) {
+    _getChildrenAndProps(childrenAndProps: [any, Block]) {
         const props: Record<string, any> = {};
         const children: Record<string, Block> = {};
 
-        Object.entries(childrenAndProps).forEach(([key, value]) => {
+        Object.entries(childrenAndProps).forEach(([key, value]: [any,Block]) => {
             if (value instanceof Block) {
                 children[key] = value;
             } else {
@@ -92,7 +93,7 @@ class Block {
     public dispatchComponentDidMount() {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-        Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
+        Object.values(this.children).forEach((child: Block) => child.dispatchComponentDidMount());
     }
 
     private _componentDidUpdate(oldProps: any, newProps: any) {
@@ -102,6 +103,7 @@ class Block {
     }
 
     protected componentDidUpdate(oldProps: any, newProps: any) {
+        console.log(oldProps + newProps)
         return true;
     }
 
@@ -141,7 +143,7 @@ class Block {
         const temp = document.createElement('template');
         temp.innerHTML = html;
 
-        Object.entries(this.children).forEach(([_, component]) => {
+        Object.entries(this.children).forEach(([_, component]: [string, Block]) => {
             const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
             if (!stub) {

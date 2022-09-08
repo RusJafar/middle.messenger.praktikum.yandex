@@ -1,6 +1,4 @@
 
-global.value
-
 enum METHODS  {
     GET = 'GET',
     POST = 'POST',
@@ -10,10 +8,10 @@ enum METHODS  {
 };
 
 
-function queryStringify(data) {
-    let params = [];
+function queryStringify(data: string) {
+    let params: string[] = [];
     
-    Object.entries(data).forEach(([key, value]) => {
+    Object.entries(data).forEach(([key, value]: [string, string]) => {
         params.push(`${key}=${value}`);
     })
 
@@ -36,16 +34,16 @@ class HTTPTransport {
         return this.request(url, {data: options.data, headers: options.headers, method: METHODS.GET, timeout:options.timeout});
     };
 
-    post = (url, options: Options) => {
+    post = (url: string, options: Options) => {
 
         return this.request(url, {data: options.data, headers: options.headers, method: METHODS.GET, timeout: options.timeout});
     };
 
-    put = (url, options: Options) => {
+    put = (url: string, options: Options) => {
 
         return this.request(url, {data: options.data, headers: options.headers, method: METHODS.GET, timeout:options.timeout});
     };
-    delete = (url, options:Options) => {
+    delete = (url : string, options:Options) => {
 
         return this.request(url, {data: options.data, headers: options.headers, method: METHODS.GET, timeout:options.timeout});
     };
@@ -78,12 +76,12 @@ class HTTPTransport {
     };
 }
 
-function fetchWithRetry(url, options) {
+function fetchWithRetry(url: string, options: any) {
     // код
     const promise = new HTTPTransport();
     ;
 
-    const countRetry = (retries) =>  {
+    const countRetry = (retries: number) =>  {
         if(retries > 0) {
             return true;
         }

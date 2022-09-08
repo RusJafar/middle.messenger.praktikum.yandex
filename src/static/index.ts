@@ -12,8 +12,8 @@ import Chats from "../pages/Chat/Chat";
 
 
 if (window.location.href.includes('login')) {
-    const loginForm = new LoginFormBlock()
-    render('#loginForm', loginForm)
+    const loginForm = new LoginFormBlock();
+    render('#loginForm', loginForm);
 }
 
 if (window.location.href.includes('registration')) {
@@ -25,7 +25,7 @@ if (window.location.href.includes('registration')) {
 if (window.location.href.includes('500')) {
     console.log('500');
     const compile = Handlebars.compile(error500);
-    document.getElementById('error500').innerHTML = compile({});
+    document.getElementById(`error500`).innerHTML  = compile({});
 }
 
 if (window.location.href.includes('404')) {

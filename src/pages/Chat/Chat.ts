@@ -24,4 +24,8 @@ export default class Chats extends BlockComponent {
     render() {
         return this.compile(chatTemplate, {});
     }
+
+    componentDidUpdate(oldProps: ChatsProps, newProps: ChatsProps) {
+        return JSON.stringify(oldProps) === JSON.stringify(newProps);
+    }
 }

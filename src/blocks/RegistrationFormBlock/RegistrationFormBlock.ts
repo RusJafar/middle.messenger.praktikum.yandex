@@ -13,9 +13,12 @@ import {RegistrationBlockStateType} from "./RegistrationFormBlockTypes";
 
 
 export default class RegistrationFormBlock extends BlockComponent {
-    state: RegistrationBlockStateType
-    constructor(props) {
-        super(props);
+    state: RegistrationBlockStateType;
+    children: { [index: string]: BlockComponent };
+
+    constructor(props: any) {
+        super('div', props);
+        this.children = {};
         this.state = {
             email: '',
             login: '',
@@ -26,29 +29,30 @@ export default class RegistrationFormBlock extends BlockComponent {
             repeat_password: ''
         }
     }
+
     isDataValid = () => {
-        Object.entries(this.state).forEach(item => {
+        Object.entries(this.state).forEach((item: string[]) => {
             switch (item[0]) {
                 case 'login':
-                    if(!validateLogin(item[1])) this.children.loginInput.className = ' required';
+                    if (!validateLogin(item[1])) this.children.loginInput.className = ' required';
                     break;
                 case 'email':
-                    if(!validateEmail(item[1])) this.children.loginPassword.className = ' required';
+                    if (!validateEmail(item[1])) this.children.loginPassword.className = ' required';
                     break;
                 case 'password':
-                    if(!validatePass(item[1])) this.children.loginPassword.className = ' required';
+                    if (!validatePass(item[1])) this.children.loginPassword.className = ' required';
                     break;
                 case 'first_name':
-                    if(!validateName(item[1])) this.children.loginPassword.className = ' required';
+                    if (!validateName(item[1])) this.children.loginPassword.className = ' required';
                     break;
                 case 'second_name':
-                    if(!validateName(item[1])) this.children.loginPassword.className = ' required';
+                    if (!validateName(item[1])) this.children.loginPassword.className = ' required';
                     break;
                 case 'phone':
-                    if(!validatePhone(item[1])) this.children.loginPassword.className = ' required';
+                    if (!validatePhone(item[1])) this.children.loginPassword.className = ' required';
                     break;
                 case 'repeat_password':
-                    if(!validatePass(item[1])) this.children.loginPassword.className = ' required';
+                    if (!validatePass(item[1])) this.children.loginPassword.className = ' required';
                     break;
             }
         })
@@ -78,7 +82,6 @@ export default class RegistrationFormBlock extends BlockComponent {
             value: '',
             events: {
                 keyup: (e) => {
-                    console.log(e.target.value)
                     this.state.email = e.target.value;
                 },
                 focus: (e) => {
@@ -102,7 +105,6 @@ export default class RegistrationFormBlock extends BlockComponent {
             value: '',
             events: {
                 keyup: (e) => {
-                    console.log(e.target.value)
                     this.state.login = e.target.value;
                 },
                 focus: (e) => {
@@ -126,7 +128,6 @@ export default class RegistrationFormBlock extends BlockComponent {
             value: '',
             events: {
                 keyup: (e) => {
-                    console.log(e.target.value)
                     this.state.name = e.target.value;
                 },
                 focus: (e) => {
@@ -150,7 +151,6 @@ export default class RegistrationFormBlock extends BlockComponent {
             value: '',
             events: {
                 keyup: (e) => {
-                    console.log(e.target.value)
                     this.state.second_name = e.target.value;
                 },
                 focus: (e) => {
@@ -175,7 +175,6 @@ export default class RegistrationFormBlock extends BlockComponent {
 
             events: {
                 keyup: (e) => {
-                    console.log(e.target.value)
                     this.state.phone = e.target.value;
                 },
                 focus: (e) => {
@@ -244,9 +243,5 @@ export default class RegistrationFormBlock extends BlockComponent {
     render() {
         const {text} = this.props;
         return this.compile(registrationFormBlockTmpl, {text});
-    }
-
-    componentDidUpdate(oldProps, newProps) {
-        return JSON.stringify(oldProps)===JSON.stringify(newProps);
     }
 }
