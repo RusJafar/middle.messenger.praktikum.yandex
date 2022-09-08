@@ -131,6 +131,7 @@ class Block {
     protected compile(template: string, context: any) {
         const contextAndStubs = { ...context };
 
+        // @ts-ignore
         Object.entries(this.children).forEach(([name, component]) => {
             contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
         });
