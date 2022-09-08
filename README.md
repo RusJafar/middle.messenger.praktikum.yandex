@@ -7,6 +7,7 @@
   - добавление и удаление пользователей из чата;
   - поиск по всем чатам;
   - отправка сообщений.
+  
 ## Ссылка на макет
 https://www.figma.com/file/g01h4wah9RXNOx2JJa7AK5/Untitled?node-id=0%3A1
 
@@ -15,6 +16,7 @@ https://www.figma.com/file/g01h4wah9RXNOx2JJa7AK5/Untitled?node-id=0%3A1
 - Parcel
 - Scss
 - Express
+- Typescript
 
 ##  Репзиторий  Githab  
 https://github.com/RusJafar/practica-chat.git
@@ -24,10 +26,16 @@ https://github.com/RusJafar/practica-chat.git
   https://willowy-khapse-0519d6.netlify.app/
 * Деполой ветки `sprint_1`
   https://glittery-faloodeh-d4f42c.netlify.app/
+* * Деполой ветки `sprint_2`
+    https://thunderous-peony-230f0b.netlify.app/
 
 __Запуск__
 - Утановка `npm i`
 - Запуск `npm run start`
 - Запуск в режиме дев `npm run dev`
 - Запуск сборки `npm run build`
+
+##Code style
+- ESLint
+- Stylelint
 

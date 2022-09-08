@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "module": "commonjs",
+    "typeRoots": [],
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
+  }
+}
