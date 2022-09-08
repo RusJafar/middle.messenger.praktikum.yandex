@@ -5,6 +5,7 @@ interface ButtonProps {
     className: string;
     text: string;
     type: string;
+    disabled?: string
     events: { click: (e) => void }
 }
 
@@ -15,12 +16,12 @@ export default class Button extends BlockComponent {
     }
 
     render() {
-        const {text, className} = this.props;
+        const {text, className, disabled} = this.props;
         const buttonTemplate: any = ButtonTemplate;
-        return this.compile(buttonTemplate, {text, className});
+        return this.compile(buttonTemplate, {text, className, disabled});
     }
 
     componentDidUpdate(oldProps, newProps) {
-        return oldProps.text !== newProps.text ? true : false;
+        return JSON.stringify(oldProps)===JSON.stringify(newProps);
     }
 }

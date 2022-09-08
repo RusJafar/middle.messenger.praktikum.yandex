@@ -15,6 +15,7 @@ interface InputProps {
     events: {
         keyup: (e) => void;
         blur?: (e) => void
+        focus?: (e) => void
     }
 }
 
@@ -29,6 +30,6 @@ export default class Input extends BlockComponent {
     }
 
     componentDidUpdate(oldProps, newProps) {
-        return oldProps.text !== newProps.text ? true : false;
+        return JSON.stringify(oldProps) === JSON.stringify(newProps);
     }
 }

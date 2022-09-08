@@ -12,6 +12,6 @@ export default class ChatListBlock extends BlockComponent {
     }
 
     componentDidUpdate(oldProps, newProps) {
-        return oldProps.text !== newProps.text ? true : false;
+        return JSON.stringify(oldProps) === JSON.stringify(newProps);
     }
 }

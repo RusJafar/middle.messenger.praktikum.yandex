@@ -1,4 +1,4 @@
-const profile = `
+export default `
 <div class="profile flex direction_row">
     <div class="profile-left-column flex">
         <button class="profile-back-button">Назад</button>
@@ -97,5 +97,3 @@ const profile = `
     </div>
 </div>
 `;
-
-export default profile;

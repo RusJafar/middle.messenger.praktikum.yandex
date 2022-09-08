@@ -1,3 +1,6 @@
+
+global.value
+
 enum METHODS  {
     GET = 'GET',
     POST = 'POST',
@@ -7,10 +10,9 @@ enum METHODS  {
 };
 
 
-
 function queryStringify(data) {
     let params = [];
-
+    
     Object.entries(data).forEach(([key, value]) => {
         params.push(`${key}=${value}`);
     })

@@ -1,7 +1,5 @@
-const chatListLeftBar = `
+export default `
    {{#each chats as |chat|}}
                 {{> messageListItem chat}}
     {{/each}}
 `;
-
-export default chatListLeftBar;

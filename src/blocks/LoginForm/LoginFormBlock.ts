@@ -2,23 +2,47 @@ import BlockComponent from '../../utils/BlockComponent';
 import loginFormTemplate from './LoginFormBlock.tmpl';
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
-import * as console from "console";
+import {
+    validateLogin,
+    validatePass,
+} from '../../utils/dataValidators'
+import {LoginFormBlockStateType} from "./LoginFormTypes";
 
-//Валидация
-//https://habr.com/ru/post/123845/
 
 export default class LoginFormBlock extends BlockComponent {
+    state: LoginFormBlockStateType;
     constructor(props) {
         super(props);
+        this.state = {
+            login: '',
+            password: '',
+            isLoginValid: false,
+            isPassValid: false
+        }
     }
+
+    isDataValid = () => {
+        if(this.state.isLoginValid && this.state.isPassValid) {
+            this.children.button.setProps({disabled: ''})
+        } else {
+            this.children.button.setProps({disabled: 'disabled'})
+        }
+    }
+
 
     init() {
         this.children.button = new Button({
             text: 'Авторизоваться',
             className: 'login-form__button',
             type: 'submit',
+            disabled: 'disabled',
             events: {
-                click: () => console.log('clicked')
+                click: (e) => {
+                    e.preventDefault();
+                    console.log(JSON.stringify(this.state))
+                    this. isDataValid();
+
+                }
             }
         });
         this.children.loginInput = new Input({
@@ -33,7 +57,7 @@ export default class LoginFormBlock extends BlockComponent {
             events: {
                 keyup: (e) => {
                     console.log(e.target.value)
-                    this.props.value = e.target.value
+                    this.state.login = e.target.value;
                 },
                 focus: (e) => {
                     console.log(e.target.value)
@@ -41,9 +65,16 @@ export default class LoginFormBlock extends BlockComponent {
                 },
                 blur: (e) => {
                     const value = e.target.value;
-                    console.log('blur ' + e.target.value)
-                    if (!(/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/.test(value))) {
-                        e.target.classList += ' required';
+                    const isDataValid = validateLogin(value);
+
+                    if (!isDataValid) {
+                        e.target.classList.add('required');
+                        this.state.isLoginValid = false;
+                        this.isDataValid();
+                    } else {
+                        e.target.classList.remove('required');
+                        this.state.isLoginValid = true;
+                        this.isDataValid();
                     }
                 }
             }
@@ -56,21 +87,28 @@ export default class LoginFormBlock extends BlockComponent {
             max: '40',
             min: '8',
             pattern: 'pattern',
-            value: 'dd',
+            value: '',
             events: {
                 keyup: (e) => {
-                    this.setProps({value: e.target.value})
-                    console.log(this.props)
+                    this.state.password = e.target.value;
+                    console.log(this.props);
+
                 },
-                focus: (e) => {
+                focus: () => {
                     console.log('focuse')
 
                 },
                 blur: (e) => {
                     const value = e.target.value;
-                    console.log('blur ' + value)
-                    if (!(/(?=^.{3,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).{8,10}$/.test(value))) {
-                        e.target.classList += ' required';
+                    const isDataValid = validatePass(value);
+                    if (!isDataValid) {
+                        e.target.classList.add('required');
+                        this.state.isPassValid = false;
+                        this.isDataValid();
+                    } else {
+                        e.target.classList.remove('required');
+                        this.state.isPassValid = true;
+                        this.isDataValid();
                     }
                 }
             }

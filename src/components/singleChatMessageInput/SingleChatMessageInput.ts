@@ -8,9 +8,8 @@ import BlockComponent from "../../utils/BlockComponent";
 import SingleChatMessageInputTemplate from './singleChatMessageInput.tmpl'
 
 
-
 export default class SingleChatMessageInput extends BlockComponent {
-    constructor(props) {
+    constructor(props = {}) {
         super("div", props);
     }
 
@@ -21,6 +20,6 @@ export default class SingleChatMessageInput extends BlockComponent {
     }
 
     componentDidUpdate(oldProps, newProps) {
-        return oldProps.text !== newProps.text ? true : false;
+        return JSON.stringify(oldProps) === JSON.stringify(newProps);
     }
 }

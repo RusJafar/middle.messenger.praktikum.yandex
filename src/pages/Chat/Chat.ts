@@ -18,7 +18,7 @@ export default class Chats extends BlockComponent {
         this.children.chatList = new ChatListBlock({chats});
         this.children.singleChat = new SingleChatComponent({chats});
         this.children.singleChatHeader = new SingleChatHeader({singleChatData});
-        this.children.singleChatMessageInput = new SingleChatMessageInput({});
+        this.children.singleChatMessageInput = new SingleChatMessageInput();
     }
 
     render() {

@@ -3,7 +3,6 @@ import { nanoid } from 'nanoid';
 import * as Handlebars from "handlebars";
 
 
-// Нельзя создавать экземпляр данного класса
 class Block {
     static EVENTS = {
         INIT: "init",
@@ -19,12 +18,6 @@ class Block {
     private _element: HTMLElement | null = null;
     private _meta: { tagName: string; props: any; };
 
-    /** JSDoc
-     * @param {string} tagName
-     * @param {Object} props
-     *
-     * @returns {void}
-     */
     constructor(tagName = "div", propsWithChildren: any = {}) {
         const eventBus = new EventBus();
 
@@ -103,7 +96,7 @@ class Block {
     }
 
     private _componentDidUpdate(oldProps: any, newProps: any) {
-        if (this.componentDidUpdate(oldProps, newProps)) {
+        if (!this.componentDidUpdate(oldProps, newProps)) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
@@ -177,7 +170,6 @@ class Block {
     }
 
     _makePropsProxy(props: any) {
-        // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
         const self = this;
 
         return new Proxy(props, {
@@ -187,7 +179,6 @@ class Block {
             },
             set(target, prop, value) {
                 const oldTarget = { ...target }
-
                 target[prop] = value;
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
                 return true;
@@ -199,7 +190,6 @@ class Block {
     }
 
     _createDocumentElement(tagName: string) {
-        // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
         return document.createElement(tagName);
     }
 
