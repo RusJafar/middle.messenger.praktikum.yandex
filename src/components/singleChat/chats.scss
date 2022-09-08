@@ -1,0 +1,50 @@
+.chats-feed {
+  background: $white;
+  width: 25%;
+  margin-top: 10px;
+  border-right: 1px solid;
+  height: 100%;
+  overflow: auto;
+}
+
+.chats-feed__list {
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.header-bar {
+  margin-bottom: 10px;
+}
+
+.header-bar__profile {
+  margin: 14px;
+}
+
+.chats-feed__search-input {
+  width: 90%;
+  height: 45px;
+  margin: auto;
+  background: $soft-grey;
+  border: none;
+  border-radius: 5px;
+}
+
+.chats-feed_hr {
+  width: 90%;
+}
+
+.splash-screen {
+  position: absolute;
+  margin: auto;
+  width: 30%;
+  top: 47%;
+  position: relative;
+  text-align: center;
+}
+
+.chat-right-column {
+  overflow: auto;
+  width: 100%;
+  margin: 0px 15px 5em 15px;
+}

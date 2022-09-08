@@ -1,0 +1,140 @@
+
+$main-color: #355843;
+$soft-green: #bbcfc3;
+$main-font-color: #7e7e7e;
+$express-font-color: #3a3a3a;
+$white: #fff;
+$soft-grey: #efefef;
+
+@import 'src/components/messageListItem/messageListItem';
+@import 'singleChatMessageItem/singleChatMessageItem.scss';
+@import 'singleChatHeader/singleChatHeader.scss';
+@import 'singleChatMessageInput/singleChatMessageInput.scss';
+@import 'loginForm/loginForm.scss';
+@import 'singleChat/chats.scss';
+@import 'profile/profile.scss';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  background-clip: padding-box;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+}
+
+input::placeholder {
+  color: $main-color;
+  padding-left: 0.5rem;
+}
+
+input:disabled {
+  color: $soft-green;
+}
+
+body {
+  margin: auto;
+  font-family: Arial;
+}
+
+a {
+  text-decoration: none;
+  color: $main-color;
+}
+
+body {
+  color: $main-font-color;
+}
+
+p, a {
+  font-size: 16px;
+}
+
+.main {
+  position: absolute;
+  width: 100%;
+  height: max-content;
+}
+
+.background_green {
+  background: $main-color;
+}
+
+.w_100 {
+  width: 100%;
+}
+.h_100 {
+  height: 100%;
+}
+
+.mt-2 {
+  margin-top: 2em;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify_content_between {
+  justify-content: space-between;
+}
+
+.justify_space_around {
+  justify-content: space-around;
+}
+
+.align_space_around {
+  align-content: space-around;
+}
+
+.align_items_center {
+  align-items: center;
+}
+
+.direction_column {
+  flex-direction: column;
+}
+
+.direction_row {
+  flex-direction: row;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.align_fixed_end {
+  align-items: flex-end;
+}
+.justify_content_end {
+  justify-content: flex-end;
+}
+
+.modal {
+  width: 476px;
+  height: auto;
+  margin: auto;
+  background: $white;
+  border-radius: 5px;
+}
+
+
+.modal__title {
+  font-weight: 500;
+  font-size: 32px;
+  color: $main-color;
+}
+
+.err-code {
+  font-size: 5em;
+}
+
+.err-message {
+  font-size: 1.4em;
+}

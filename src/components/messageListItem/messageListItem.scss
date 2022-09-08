@@ -1,0 +1,44 @@
+.chat-item {
+  width: 100%;
+  background: $white;
+}
+
+.chat-item__avatar-con {
+  width: 20%;
+}
+
+.chat-item__user_initials {
+  background: $soft-green;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  color: $express-font-color;
+}
+
+.chat-item__info-con {
+  width: 80%;
+  margin: 10px;
+}
+
+.chat-item__name {
+  font-weight: 800;
+  color: $express-font-color;
+}
+
+.chat-item__last-action {
+  margin-top: 2px;
+}
+
+.chat-item__action-time {
+  font-size: 14px;
+}
+
+.chat-item__new-action-count {
+  background: $main-color;
+  color: $white;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+}

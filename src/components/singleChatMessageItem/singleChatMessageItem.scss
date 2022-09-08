@@ -1,0 +1,29 @@
+.single-chat {
+  width: 100%;
+  background: $white;
+  height: 85%;
+}
+
+.single-chat__message-list {
+  margin: auto;
+  overflow-y: auto;
+}
+
+.single-chat__message-content {
+  background: $soft-green;
+  border-radius: 5px;
+  padding: 10px;
+  width: 50%;
+  margin: 5px;
+}
+
+.single-chat__meta {
+  position: relative;
+  top: 0.5rem;
+  bottom: auto;
+  font-size: 12px;
+}
+
+.single-chat-bottom-indent {
+  height: 4.5em;
+}
