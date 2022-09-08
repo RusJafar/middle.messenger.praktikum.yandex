@@ -2,7 +2,6 @@ import BlockComponent from '../../utils/BlockComponent';
 import singleChatTemplate from './SingleChatComponent.tmpl'
 
 
-
 export default class SingleChatComponent extends BlockComponent {
     constructor(props) {
         super('div', props);
@@ -14,6 +13,6 @@ export default class SingleChatComponent extends BlockComponent {
     }
 
     componentDidUpdate(oldProps, newProps) {
-        return JSON.stringify(oldProps)===JSON.stringify(newProps);
+        return JSON.stringify(oldProps) === JSON.stringify(newProps);
     }
 }

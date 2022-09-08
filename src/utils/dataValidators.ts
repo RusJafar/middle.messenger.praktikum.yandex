@@ -33,3 +33,11 @@ export const validatePass = (value: string): boolean => {
             /(?=^.{8,40}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
         )
 };
+
+export const checkInputData = (target: any, validator: Function) => {
+    if (!validator(target.value)) {
+        target.classList.add('required');
+    } else {
+        target.classList.remove('required');
+    }
+};

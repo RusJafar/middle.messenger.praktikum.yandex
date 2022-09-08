@@ -119,12 +119,7 @@ class Block {
 
     private _render() {
         const fragment = this.render();
-        console.log(fragment.children.length)
         const newElement = fragment.firstElementChild as HTMLElement;
-
-        console.log("fragment")
-        console.log(fragment)
-        console.log(newElement)
 
         this._element?.replaceWith(newElement);
 

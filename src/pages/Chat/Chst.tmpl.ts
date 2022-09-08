@@ -1,6 +1,6 @@
 export default `
-<div>
-<div class="chats-feed">
+<div class="chat_container flex">
+    <div class="chats-feed">
         <div class="header-bar flex direction_column">
             <div class="header-bar__profile flex justify_content_end">
                 <a href="profile.html" >Профиль ></a>
@@ -11,16 +11,10 @@ export default `
             {{{chatList}}}
         </div>
 </div>
-
-<div class="chat-right-column">
-    <div id="chatHeader"></div>
-    <div class="single-chat">
+    <div class="chat-right-column">
         {{{singleChatHeader}}}
-        {{{singleChat}}}
-        
+        {{{singleChat}}}    
+        {{{singleChatMessageInput}}}
     </div>
-    {{{singleChatMessageInput}}}
-</div>
-
 </div>
 `;

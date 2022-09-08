@@ -5,6 +5,7 @@ import Input from "../../components/Input/Input";
 import {
     validateLogin,
     validatePass,
+    checkInputData
 } from '../../utils/dataValidators'
 import {LoginFormBlockStateType} from "./LoginFormTypes";
 
@@ -16,31 +17,34 @@ export default class LoginFormBlock extends BlockComponent {
         this.state = {
             login: '',
             password: '',
-            isLoginValid: false,
-            isPassValid: false
         }
     }
 
     isDataValid = () => {
-        if(this.state.isLoginValid && this.state.isPassValid) {
-            this.children.button.setProps({disabled: ''})
-        } else {
-            this.children.button.setProps({disabled: 'disabled'})
-        }
+        Object.entries(this.state).forEach(item => {
+            switch (item[0]) {
+                case 'login':
+                    if(!validateLogin(item[1])) this.children.loginInput.className = ' required';
+                    break;
+                case 'password':
+                    if(!validatePass(item[1])) this.children.loginPassword.className = ' required';
+                    break;
+            }
+        })
     }
-
 
     init() {
         this.children.button = new Button({
             text: 'Авторизоваться',
             className: 'login-form__button',
             type: 'submit',
-            disabled: 'disabled',
+            disabled: null
+            ,
             events: {
                 click: (e) => {
                     e.preventDefault();
                     console.log(JSON.stringify(this.state))
-                    this. isDataValid();
+                    this.isDataValid();
 
                 }
             }
@@ -60,22 +64,12 @@ export default class LoginFormBlock extends BlockComponent {
                     this.state.login = e.target.value;
                 },
                 focus: (e) => {
-                    console.log(e.target.value)
-
+                    const target = e.target;
+                    checkInputData(target, validateLogin);
                 },
                 blur: (e) => {
-                    const value = e.target.value;
-                    const isDataValid = validateLogin(value);
-
-                    if (!isDataValid) {
-                        e.target.classList.add('required');
-                        this.state.isLoginValid = false;
-                        this.isDataValid();
-                    } else {
-                        e.target.classList.remove('required');
-                        this.state.isLoginValid = true;
-                        this.isDataValid();
-                    }
+                    const target = e.target;
+                    checkInputData(target, validateLogin);
                 }
             }
         });
@@ -83,7 +77,7 @@ export default class LoginFormBlock extends BlockComponent {
             placeholder: 'Пароль',
             className: 'login-form__input',
             name: 'password',
-            type: 'text',
+            type: 'password',
             max: '40',
             min: '8',
             pattern: 'pattern',
@@ -94,22 +88,14 @@ export default class LoginFormBlock extends BlockComponent {
                     console.log(this.props);
 
                 },
-                focus: () => {
-                    console.log('focuse')
+                focus: (e) => {
+                    const target = e.target;
+                    checkInputData(target, validatePass);
 
                 },
                 blur: (e) => {
-                    const value = e.target.value;
-                    const isDataValid = validatePass(value);
-                    if (!isDataValid) {
-                        e.target.classList.add('required');
-                        this.state.isPassValid = false;
-                        this.isDataValid();
-                    } else {
-                        e.target.classList.remove('required');
-                        this.state.isPassValid = true;
-                        this.isDataValid();
-                    }
+                    const target = e.target;
+                    checkInputData(target, validatePass);
                 }
             }
         });

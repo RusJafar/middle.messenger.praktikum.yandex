@@ -1,5 +1,6 @@
 export default `
 <div class="chat-message__input-con flex align_items_center">
+
     <div class="chat-message__attach-button">
         <div onclick={alert('Hello')} class="attach-button">&#43;</div>
     </div>

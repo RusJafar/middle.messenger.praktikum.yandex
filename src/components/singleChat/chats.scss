@@ -48,3 +48,13 @@
   width: 100%;
   margin: 0px 15px 5em 15px;
 }
+
+.chat_container {
+  overflow: auto;
+  height: 100%;
+}
+
+.single-chat__message-feed {
+  overflow: auto;
+  height: 100%;
+}

@@ -15,8 +15,8 @@ export default class SingleChatMessageInput extends BlockComponent {
 
     render() {
         const {text, className} = this.props;
-        const buttonTemplate: any = SingleChatMessageInputTemplate;
-        return this.compile(buttonTemplate, {text, className});
+        const messageTemplate: any = SingleChatMessageInputTemplate;
+        return this.compile(messageTemplate, {text, className});
     }
 
     componentDidUpdate(oldProps, newProps) {

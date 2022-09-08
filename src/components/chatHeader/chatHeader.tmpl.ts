@@ -2,13 +2,13 @@ export default `
     <div class="single-chat-header flex direction_row align_items_center">
       <div class="single-chat-header__avatar-con">
           <div class="">
-            {{#if false}}
+            {{#if this.avatar}}
             <span class="chat-item__user_initials flex justify_space_around align_items_center">
-                <img src="{{avatar}}" alt="Аватар" />
+                <img src="{{this.avatar}}" alt="Аватар" />
             </span>
             {{else}}
                 <span class="chat-item__user_initials flex justify_space_around align_items_center">
-                    {{getInitialHelper last_message.user.first_name last_message.user.second_name}}
+                    {{getInitialHelper this.last_message.user.first_name this.last_message.user.second_name}}
                 </span>
             {{/if}}
             </div>
@@ -16,7 +16,7 @@ export default `
       <div class="single-chat-header__info-con flex direction_row space-between">
         <div class="single-chat-header__name-con">
             <div class="single-chat-header__name">
-            {{{title}}}
+            {{this.title}}
             </div>
         </div>
         <div onclick={alert('Hello')} class="single-chat-header__menu-con flex direction_column space-between align_fixed_end">

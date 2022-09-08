@@ -7,13 +7,51 @@ import {
     validateLogin,
     validatePhone,
     validatePass,
-    validateEmail
+    validateEmail, checkInputData
 } from '../../utils/dataValidators'
+import {RegistrationBlockStateType} from "./RegistrationFormBlockTypes";
 
 
 export default class RegistrationFormBlock extends BlockComponent {
+    state: RegistrationBlockStateType
     constructor(props) {
         super(props);
+        this.state = {
+            email: '',
+            login: '',
+            password: '',
+            first_name: '',
+            second_name: '',
+            phone: '',
+            repeat_password: ''
+        }
+    }
+    isDataValid = () => {
+        Object.entries(this.state).forEach(item => {
+            switch (item[0]) {
+                case 'login':
+                    if(!validateLogin(item[1])) this.children.loginInput.className = ' required';
+                    break;
+                case 'email':
+                    if(!validateEmail(item[1])) this.children.loginPassword.className = ' required';
+                    break;
+                case 'password':
+                    if(!validatePass(item[1])) this.children.loginPassword.className = ' required';
+                    break;
+                case 'first_name':
+                    if(!validateName(item[1])) this.children.loginPassword.className = ' required';
+                    break;
+                case 'second_name':
+                    if(!validateName(item[1])) this.children.loginPassword.className = ' required';
+                    break;
+                case 'phone':
+                    if(!validatePhone(item[1])) this.children.loginPassword.className = ' required';
+                    break;
+                case 'repeat_password':
+                    if(!validatePass(item[1])) this.children.loginPassword.className = ' required';
+                    break;
+            }
+        })
     }
 
     init() {
@@ -24,6 +62,8 @@ export default class RegistrationFormBlock extends BlockComponent {
             events: {
                 click: (e) => {
                     e.preventDefault();
+                    console.log(JSON.stringify(this.state))
+                    this.isDataValid();
                 }
             }
         });
@@ -39,14 +79,15 @@ export default class RegistrationFormBlock extends BlockComponent {
             events: {
                 keyup: (e) => {
                     console.log(e.target.value)
+                    this.state.email = e.target.value;
+                },
+                focus: (e) => {
+                    const target = e.target;
+                    checkInputData(target, validateEmail);
                 },
                 blur: (e) => {
-                    const value = e.target.value;
-                    if (!validateEmail(value)) {
-                        e.target.classList.add('required');
-                    } else {
-                        e.target.classList.remove('required');
-                    }
+                    const target = e.target;
+                    checkInputData(target, validateEmail);
                 }
             }
         });
@@ -61,16 +102,16 @@ export default class RegistrationFormBlock extends BlockComponent {
             value: '',
             events: {
                 keyup: (e) => {
-                    const value = e.target.value;
-                    this.props.value = value
+                    console.log(e.target.value)
+                    this.state.login = e.target.value;
+                },
+                focus: (e) => {
+                    const target = e.target;
+                    checkInputData(target, validateLogin);
                 },
                 blur: (e) => {
-                    const value = e.target.value;
-                    if (!validateLogin(value)) {
-                        e.target.classList.add('required');
-                    } else {
-                        e.target.classList.remove('required');
-                    }
+                    const target = e.target;
+                    checkInputData(target, validateLogin);
                 }
             }
         });
@@ -85,16 +126,16 @@ export default class RegistrationFormBlock extends BlockComponent {
             value: '',
             events: {
                 keyup: (e) => {
-                    const value = e.target.value;
-                    this.props.value = value
+                    console.log(e.target.value)
+                    this.state.name = e.target.value;
+                },
+                focus: (e) => {
+                    const target = e.target;
+                    checkInputData(target, validateName);
                 },
                 blur: (e) => {
-                    const value = e.target.value;
-                    if (!validateName(value)) {
-                        e.target.classList.add('required');
-                    } else {
-                        e.target.classList.remove('required');
-                    }
+                    const target = e.target;
+                    checkInputData(target, validateName);
                 }
             }
         });
@@ -109,16 +150,16 @@ export default class RegistrationFormBlock extends BlockComponent {
             value: '',
             events: {
                 keyup: (e) => {
-                    const value = e.target.value;
-                    this.props.value = value
+                    console.log(e.target.value)
+                    this.state.second_name = e.target.value;
+                },
+                focus: (e) => {
+                    const target = e.target;
+                    checkInputData(target, validateName);
                 },
                 blur: (e) => {
-                    const value = e.target.value;
-                    if (!validateName(value)) {
-                        e.target.classList.add('required');
-                    } else {
-                        e.target.classList.remove('required');
-                    }
+                    const target = e.target;
+                    checkInputData(target, validateName);
                 }
             }
         });
@@ -129,21 +170,21 @@ export default class RegistrationFormBlock extends BlockComponent {
             type: 'tel',
             max: '10',
             min: '15',
-            pattern: 'pattern',
+            pattern: null,
             value: '',
 
             events: {
                 keyup: (e) => {
-                    const value = e.target.value;
-                    this.props.value = value
+                    console.log(e.target.value)
+                    this.state.phone = e.target.value;
+                },
+                focus: (e) => {
+                    const target = e.target;
+                    checkInputData(target, validatePhone);
                 },
                 blur: (e) => {
-                    const value = e.target.value;
-                    if (!validatePhone(value)) {
-                        e.target.classList.add('required');
-                    } else {
-                        e.target.classList.remove('required');
-                    }
+                    const target = e.target;
+                    checkInputData(target, validatePhone);
                 }
             }
         });
@@ -151,24 +192,25 @@ export default class RegistrationFormBlock extends BlockComponent {
             placeholder: 'Пароль',
             className: 'login-form__input',
             name: 'password',
-            type: 'text',
+            type: 'password',
             max: '40',
             min: '8',
-            pattern: 'pattern',
+            pattern: null,
             value: '',
 
             events: {
                 keyup: (e) => {
-                    const value = e.target.value;
-                    this.props.value = value
+                    this.state.password = e.target.value;
+                    console.log(this.props);
+
+                },
+                focus: (e) => {
+                    const target = e.target;
+                    checkInputData(target, validatePass);
                 },
                 blur: (e) => {
-                    const value = e.target.value;
-                    if (!validatePass(value)) {
-                        e.target.classList.add('required');
-                    } else {
-                        e.target.classList.remove('required');
-                    }
+                    const target = e.target;
+                    checkInputData(target, validatePass);
                 }
             }
         });
@@ -176,23 +218,24 @@ export default class RegistrationFormBlock extends BlockComponent {
             placeholder: 'Повторите пароль',
             className: 'login-form__input',
             name: 'repeat_password',
-            type: 'text',
+            type: 'password',
             max: '40',
             min: '8',
-            pattern: 'pattern',
+            pattern: null,
             value: '',
             events: {
                 keyup: (e) => {
-                    const value = e.target.value;
-                    this.props.value = value
+                    this.state.repeat_password = e.target.value;
+                    console.log(this.props);
+
+                },
+                focus: (e) => {
+                    const target = e.target;
+                    checkInputData(target, validatePass);
                 },
                 blur: (e) => {
-                    const value = e.target.value;
-                    if (!validatePass(value)) {
-                        e.target.classList.add('required');
-                    } else {
-                        e.target.classList.remove('required');
-                    }
+                    const target = e.target;
+                    checkInputData(target, validatePass);
                 }
             }
         });

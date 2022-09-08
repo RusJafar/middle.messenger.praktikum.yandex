@@ -42,19 +42,10 @@ if (window.location.href.includes('profile')) {
 
 const pageHref = window.location.href;
 if (pageHref.includes('chats') || pageHref.includes('single-chat')) {
-    const singleChatData = chats[0];
+    const singleChatData = chats[1];
+    console.log(singleChatData)
     const chatListBlock = new Chats({chats, singleChatData});
     window.addEventListener('DOMContentLoaded', () => {
         render('#chatList', chatListBlock)
-
-        // const singleChatData = chats[0];
-        // const compileSingleChat = Handlebars.compile(singleChatComponentTmpl);
-        // document.getElementById('singleChatComponentTmpl').innerHTML = compileSingleChat({chats});
-
-        // const compileChatHeader = Handlebars.compile(chatHeader);
-        // document.getElementById('chatHeader').innerHTML = compileChatHeader({singleChatData});
-        //
-        // const compileMessageInput = Handlebars.compile(sendMessagePanel);
-        // document.getElementById('messageInput').innerHTML = compileMessageInput({singleChatData});
     });
 }
