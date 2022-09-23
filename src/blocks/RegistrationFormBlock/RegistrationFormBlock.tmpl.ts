@@ -1,4 +1,5 @@
 export default `
+<div class="background_green flex align_items_center" style="height: 100%">
     <div class="modal flex justify_content_between align_items_center direction_column">
         <div class="modal__title-con">
             <h2 class="modal__title">Регистрация</h2>
@@ -18,5 +19,6 @@ export default `
                 <a href="login.html" alt="Войти" class="registration-link">Войти</a>
             </div>
         </form>
+    </div>
     </div>
 `;

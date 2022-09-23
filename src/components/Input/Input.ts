@@ -12,6 +12,7 @@ interface InputProps {
     placeholder: string;
     type: string;
     value: string;
+    disabled?: boolean;
     events: {
         keyup: (e: Event) => void;
         blur?: (e: Event) => void
@@ -19,14 +20,22 @@ interface InputProps {
     }
 }
 
-export default class Input extends BlockComponent {
+export default class Input extends BlockComponent<InputProps> {
     constructor(props: InputProps) {
         super("div", props);
     }
 
+    public getName = () => {
+        return (this.element as HTMLInputElement).name;
+    }
+
+    public getValue = () => {
+        return (this.element as HTMLInputElement).value;
+    }
+
     render() {
-        const {placeholder, className, name, type, max, min, pattern, value} = this.props;
-        return this.compile(InputTemplate, {placeholder, className, name, type, max, min, pattern, value});
+        const {placeholder, className, name, type, max, min, pattern, value, disabled= false} = this.props;
+        return this.compile(InputTemplate, {placeholder, className, name, type, max, min, pattern, value, disabled});
     }
 
     componentDidUpdate(oldProps: InputProps, newProps: InputProps) {

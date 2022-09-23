@@ -5,5 +5,8 @@ export default `
     pattern="{{pattern}}" 
     min="{{min}}" 
     max="{{max}}"
-    value="{{value}}"/>
+    value="{{value}}"
+    {{#if disabled}}
+        disabled="{{disabled}}"
+    {{/if}}/>
 `

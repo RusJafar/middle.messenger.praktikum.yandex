@@ -4,9 +4,9 @@
   "description": "",
   "homepage": "./",
   "scripts": {
-    "start": "parcel build src/static/index.html && node ./server.js",
+    "start": "parcel build src/static/menu.html && node ./server.js",
     "dev": "parcel src/static/index.html --no-cache",
-    "build": "parcel build src/static/index.html --no-source-maps --no-cache"
+    "build": "parcel build src/static/menu.html --no-source-maps --no-cache"
   },
   "repository": {
     "type": "git",

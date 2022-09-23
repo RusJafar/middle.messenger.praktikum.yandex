@@ -1,8 +1,8 @@
 import BlockComponent from '../../utils/BlockComponent';
-import ButtonTemplate from './Button.tmpl';
-import ButtonProps from "./ButtonTypes";
+import ButtonTemplate from './TextButton.tmpl';
+import ButtonProps from "../Button/ButtonTypes";
 
-export default class Button extends BlockComponent<ButtonProps> {
+export default class TextButton extends BlockComponent<ButtonProps> {
     constructor(props: ButtonProps) {
         super("div", props);
     }

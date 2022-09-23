@@ -1,37 +1,39 @@
 import BlockComponent from '../../utils/BlockComponent';
-import registrationFormBlockTmpl from './RegistrationFormBlock.tmpl';
+import ProfileTemplate from './ProfileBlock.tmpl';
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import {
     validateName,
     validateLogin,
     validatePhone,
-    validatePass,
     validateEmail, checkInputData
 } from '../../utils/dataValidators'
-import {RegistrationBlockStateType} from "./RegistrationFormBlockTypes";
+import {ProfileProps} from "../../pages/Profile/ProfileTypes";
+import {chats} from "../../mockData/chatsList";
+import TextButton from "../../components/TextButton/textButton";
 
 
-export default class RegistrationFormBlock extends BlockComponent {
-    state: RegistrationBlockStateType;
+export default class ProfileBlock extends BlockComponent<ProfileProps> {
+    state;
     children: { [index: string]: BlockComponent };
 
     constructor(props: any = {}) {
         super('div', props);
         this.children = {};
         this.state = {
-            email: '',
-            login: '',
-            password: '',
-            first_name: '',
-            second_name: '',
-            phone: '',
-            repeat_password: ''
+            formData: {
+                email: '',
+                login: '',
+                first_name: '',
+                second_name: '',
+                phone: '',
+                name: ''
+            }
         }
     }
 
     isDataValid = () => {
-        Object.entries(this.state).forEach((item: string[]) => {
+        Object.entries(this.state.formData).forEach((item: [key: string, value: string]) => {
             switch (item[0]) {
                 case 'login':
                     if (!validateLogin(item[1])) this.children.loginInput.className = ' required';
@@ -39,50 +41,46 @@ export default class RegistrationFormBlock extends BlockComponent {
                 case 'email':
                     if (!validateEmail(item[1])) this.children.emailInput.className = ' required';
                     break;
-                case 'password':
-                    if (!validatePass(item[1])) this.children.loginPassword.className = ' required';
-                    break;
                 case 'first_name':
-                    if (!validateName(item[1])) this.children.nameInput.className = ' required';
+                    if (!validateName(item[1])) this.children.firstName.className = ' required';
                     break;
                 case 'second_name':
-                    if (!validateName(item[1])) this.children.secondNameInput.className = ' required';
+                    if (!validateName(item[1])) this.children.secondName.className = ' required';
                     break;
                 case 'phone':
-                    if (!validatePhone(item[1])) this.children.phoneInput.className = ' required';
-                    break;
-                case 'repeat_password':
-                    if (!validatePass(item[1])) this.children.loginPasswordRepeat.className = ' required';
+                    if (!validatePhone(item[1])) this.children.inputPhone.className = ' required';
                     break;
             }
         })
     }
 
     init() {
-        this.children.button = new Button({
-            text: 'Зарегистрироваться',
-            className: 'login-form__button',
+        const {name, second_name, login, email, phone, chat_name} = this.props;
+        this.children.changeDataButton = new TextButton({
+            text: 'Изменить данные',
+            className: 'profile-change-data-button',
             type: 'submit',
             events: {
                 click: (e) => {
                     e.preventDefault();
-                    console.log(JSON.stringify(this.state))
-                    this.isDataValid();
+                    Object.entries(this.props.children)
                 }
             }
         });
+
         this.children.emailInput = new Input({
-            placeholder: 'Почта',
-            className: 'login-form__input',
+            placeholder: email,
+            className: 'profile-user-info',
             name: 'email',
             type: 'text',
             max: '40',
             min: '5',
             pattern: 'pattern',
             value: '',
+            disabled: true,
             events: {
                 keyup: (e) => {
-                    this.state.email = e.target.value;
+                    this.state.formData.email = e.target?.value;
                 },
                 focus: (e) => {
                     const target = e.target;
@@ -95,17 +93,18 @@ export default class RegistrationFormBlock extends BlockComponent {
             }
         });
         this.children.loginInput = new Input({
-            placeholder: 'Логин',
-            className: 'login-form__input',
+            placeholder: login,
+            className: 'profile-user-info',
             name: 'login',
             type: 'text',
             max: '20',
             min: '3',
             pattern: 'pattern',
             value: '',
+            disabled: true,
             events: {
                 keyup: (e) => {
-                    this.state.login = e.target.value;
+                    this.state.formData.login = e.target?.value;
                 },
                 focus: (e) => {
                     const target = e.target;
@@ -118,17 +117,18 @@ export default class RegistrationFormBlock extends BlockComponent {
             }
         });
         this.children.nameInput = new Input({
-            placeholder: 'Имя',
-            className: 'login-form__input',
+            placeholder: name,
+            className: 'profile-user-info',
             name: 'first_name',
             type: 'text',
             max: '40',
             min: '3',
             pattern: 'pattern',
             value: '',
+            disabled: true,
             events: {
                 keyup: (e) => {
-                    this.state.name = e.target.value;
+                    this.state.formData.name = e.target?.value;
                 },
                 focus: (e) => {
                     const target = e.target;
@@ -141,17 +141,18 @@ export default class RegistrationFormBlock extends BlockComponent {
             }
         });
         this.children.secondNameInput = new Input({
-            placeholder: 'Фамилия',
-            className: 'login-form__input',
+            placeholder: second_name,
+            className: 'profile-user-info',
             name: 'second_name',
             type: 'text',
             max: '40',
             min: '3',
             pattern: 'pattern',
             value: '',
+            disabled: true,
             events: {
                 keyup: (e) => {
-                    this.state.second_name = e.target.value;
+                    this.state.formData.second_name = e.target?.value;
                 },
                 focus: (e) => {
                     const target = e.target;
@@ -164,18 +165,18 @@ export default class RegistrationFormBlock extends BlockComponent {
             }
         });
         this.children.phoneInput = new Input({
-            placeholder: 'Телефон',
-            className: 'login-form__input',
+            placeholder: phone,
+            className: 'profile-user-info',
             name: 'phone',
             type: 'tel',
             max: '10',
             min: '15',
             pattern: null,
             value: '',
-
+            disabled: true,
             events: {
                 keyup: (e) => {
-                    this.state.phone = e.target.value;
+                    this.state.formData.phone = e.target?.value;
                 },
                 focus: (e) => {
                     const target = e.target;
@@ -187,61 +188,33 @@ export default class RegistrationFormBlock extends BlockComponent {
                 }
             }
         });
-        this.children.loginPassword = new Input({
-            placeholder: 'Пароль',
-            className: 'login-form__input',
-            name: 'password',
-            type: 'password',
+        this.children.displayName = new Input({
+            placeholder: chat_name,
+            className: 'profile-user-info',
+            name: 'chat_name',
+            type: 'text',
             max: '40',
-            min: '8',
-            pattern: null,
+            min: '3',
+            pattern: 'pattern',
             value: '',
-
+            disabled: true,
             events: {
                 keyup: (e) => {
-                    this.state.password = e.target.value;
-                    console.log(this.props);
-
+                    this.state.formData.second_name = e.target?.value;
                 },
                 focus: (e) => {
                     const target = e.target;
-                    checkInputData(target, validatePass);
+                    checkInputData(target, validateName);
                 },
                 blur: (e) => {
                     const target = e.target;
-                    checkInputData(target, validatePass);
-                }
-            }
-        });
-        this.children.loginPasswordRepeat = new Input({
-            placeholder: 'Повторите пароль',
-            className: 'login-form__input',
-            name: 'repeat_password',
-            type: 'password',
-            max: '40',
-            min: '8',
-            pattern: null,
-            value: '',
-            events: {
-                keyup: (e) => {
-                    this.state.repeat_password = e.target.value;
-                    console.log(this.props);
-
-                },
-                focus: (e) => {
-                    const target = e.target;
-                    checkInputData(target, validatePass);
-                },
-                blur: (e) => {
-                    const target = e.target;
-                    checkInputData(target, validatePass);
+                    checkInputData(target, validateName);
                 }
             }
         });
     }
 
     render() {
-        const {text} = this.props;
-        return this.compile(registrationFormBlockTmpl, {text});
+        return this.compile(ProfileTemplate, {});
     }
 }

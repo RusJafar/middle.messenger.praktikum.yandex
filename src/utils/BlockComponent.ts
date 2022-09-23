@@ -4,7 +4,7 @@ import * as Handlebars from "handlebars";
 
 
 
-class Block {
+class Block<P extends Record<string, any> = any> {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -17,9 +17,9 @@ class Block {
     public children: Record<string, Block>;
     private eventBus: () => EventBus;
     private _element: HTMLElement | null = null;
-    private _meta: { tagName: string; props: any; };
+    protected _meta: { tagName: string; props: any; };
 
-    constructor(tagName = "div", propsWithChildren: any = {}) {
+    constructor(tagName = "div", propsWithChildren: P) {
         const eventBus = new EventBus();
 
         const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -39,7 +39,7 @@ class Block {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _getChildrenAndProps(childrenAndProps: [any, Block]) {
+    _getChildrenAndProps(childrenAndProps: P) {
         const props: Record<string, any> = {};
         const children: Record<string, Block> = {};
 
@@ -55,7 +55,7 @@ class Block {
     }
 
     _addEvents() {
-        const {events = {}} = this.props as { events: Record<string, () =>void> };
+        const {events = {}} = this.props;
 
         Object.keys(events).forEach(eventName => {
             this._element?.addEventListener(eventName, events[eventName]);
@@ -96,15 +96,14 @@ class Block {
         Object.values(this.children).forEach((child: Block) => child.dispatchComponentDidMount());
     }
 
-    private _componentDidUpdate(oldProps: any, newProps: any) {
+    private _componentDidUpdate(oldProps: P, newProps: P): void {
         if (!this.componentDidUpdate(oldProps, newProps)) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
 
-    protected componentDidUpdate(oldProps: any, newProps: any) {
-        console.log(oldProps + newProps)
-        return true;
+    protected componentDidUpdate(oldProps: P, newProps: P): boolean {
+        return JSON.stringify(oldProps) === JSON.stringify(newProps);
     }
 
     setProps = (nextProps: any) => {
@@ -133,7 +132,6 @@ class Block {
     protected compile(template: string, context: any) {
         const contextAndStubs = { ...context };
 
-        // @ts-ignore
         Object.entries(this.children).forEach(([name, component]) => {
             contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
         });

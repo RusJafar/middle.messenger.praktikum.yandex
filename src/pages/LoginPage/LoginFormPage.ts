@@ -8,9 +8,12 @@ import {
     checkInputData
 } from '../../utils/dataValidators'
 import {LoginFormBlockStateType} from "./LoginFormTypes";
+import {AuthController} from "../../controllers/AuthController";
+import {SigninData} from "../../api/AuthAPI";
+import render from "../../utils/renderDOM";
 
 
-export default class LoginFormBlock extends BlockComponent {
+export default class LoginFormPage extends BlockComponent {
     state: LoginFormBlockStateType;
 
     constructor(props: any = {}) {
@@ -25,7 +28,7 @@ export default class LoginFormBlock extends BlockComponent {
         Object.entries(this.state).forEach((item: [key: string, value: string]) => {
             switch (item[0]) {
                 case 'login':
-                    if (!validateLogin(item[1])) this.children.loginInput.className  = ' required';
+                    if (!validateLogin(item[1])) this.children.loginInput.className = ' required';
                     break;
                 case 'password':
                     if (!validatePass(item[1])) this.children.loginPassword.className = ' required';
@@ -45,7 +48,7 @@ export default class LoginFormBlock extends BlockComponent {
                     e.preventDefault();
                     console.log(JSON.stringify(this.state))
                     this.isDataValid();
-
+                    this.onSubmit();
                 }
             }
         });
@@ -99,6 +102,18 @@ export default class LoginFormBlock extends BlockComponent {
                 }
             }
         });
+    }
+
+    onSubmit = async () => {
+        const values = Object
+            .values(this.children)
+            .filter(child => child instanceof Input)
+            .map((child) => ([(child as Input).getName(), (child as Input).getValue()]))
+
+        const data = Object.fromEntries(values);
+
+        const authController = new AuthController();
+        await authController.signin(data as SigninData)
     }
 
     render() {
